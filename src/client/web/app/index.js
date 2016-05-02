@@ -1,6 +1,7 @@
+import configureStore from '../../common/configureStore';
+import Counter from '../components/Counter';
 import React, { Component } from 'react';
-import Layout from './Layout';
-import Counter from './Counter';
+import { Provider } from 'react-redux';
 
 // If you use React Router, make this component
 // render <Router> with your routes. Currently,
@@ -11,10 +12,12 @@ import Counter from './Counter';
 
 export default class App extends Component {
   render() {
+    const store = configureStore();
+
     return (
-      <Layout>
+      <Provider store={store}>
         <Counter />
-      </Layout>
+      </Provider>,
     );
   }
 }

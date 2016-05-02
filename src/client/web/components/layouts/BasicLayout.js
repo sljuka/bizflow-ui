@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {PropTypes as RPT} from 'react';
 
 export default function Layout({ children }) {
+
+  static propTypes = {
+    children: RPT.any
+  }
+
   return (
     <div>
-      <h1>Hello, world!</h1>
       {children}
     </div>
   )
