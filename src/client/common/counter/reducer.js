@@ -1,9 +1,16 @@
-export default function counter(state = 0, action) {
+import { Record } from 'immutable';
+
+const InitialState = Record({
+  counter: 0
+});
+const initialState = new InitialState;
+
+export default function counter(state = initialState, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return state + 1;
+      return state.update('counter', (value) => value + 1);
     case 'DECREMENT':
-      return state - 1;
+      return state.update('counter', (value) => value - 1);
     default:
       return state;
   }

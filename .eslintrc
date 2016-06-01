@@ -18,6 +18,8 @@
     "react/wrap-multilines": 0,
     "global-require": 0,
     "comma-dangle": 0,
+    "new-cap": 0,
+    "curly": 0
   },
   "globals": {
     "after": false,

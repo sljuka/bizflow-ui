@@ -1,4 +1,4 @@
-import configureStore from '../../common/configureStore';
+import configureStore from '../../configureStore';
 import Counter from '../components/Counter';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';

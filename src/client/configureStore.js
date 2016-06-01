@@ -1,8 +1,15 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import rootReducer from './rootReducer';
+import rootReducer from './common/app/reducer';
+import promiseMiddleware from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
 
 export default function configureStore(preloadedState) {
-  const middleware = {};
+  const middleware = [
+    promiseMiddleware({
+      promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']
+    }),
+    thunk
+  ];
 
   const store = createStore(rootReducer, preloadedState, compose(
     applyMiddleware(...middleware),
@@ -11,8 +18,8 @@ export default function configureStore(preloadedState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../common/rootReducer', () => {
-      const nextReducer = require('./rootReducer').default;
+    module.hot.accept('./common/app/reducer', () => {
+      const nextReducer = require('./common/app/reducer').default;
       store.replaceReducer(nextReducer);
     });
   }
