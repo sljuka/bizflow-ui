@@ -1,0 +1,1 @@
+export const CREATE_INSTANCE = 'CREATE_INSTANCE';
