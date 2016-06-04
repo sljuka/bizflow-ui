@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as counterActions from '../../common/counter/actions';
 
-function a(state) { return { counter: state.counter.counter }; }
-function b(dispatch) { return { actions: bindActionCreators(counterActions, dispatch) }; }
-
 @connect(
-  a,
-  b
+  (state) => {
+    const counter = state.counter.counter;
+    return { counter };
+  },
+  (dispatch) => {
+    const actions = bindActionCreators(counterActions, dispatch);
+    return { actions };
+  }
 )
 export default class Counter extends Component {
 
@@ -17,17 +20,15 @@ export default class Counter extends Component {
     actions: RPT.object
   }
 
-  click() {}
-
   render() {
     const { actions } = this.props;
 
     return (
       <div>
         <h2>Counter: {this.props.counter}</h2>
-        <button onClick={actions.increment}>ssssddd</button>
-        <button onClick={actions.decrement}>ddddssss</button>
-        <button onClick={actions.magicAction2}>eeeffff</button>
+        <button onClick={actions.increment}>inc</button>
+        <button onClick={actions.decrement}>dec</button>
+        <button onClick={actions.magicAction2}>asyncss</button>
       </div>
    );
   }
