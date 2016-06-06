@@ -19,7 +19,8 @@
     "global-require": 0,
     "comma-dangle": 0,
     "new-cap": 0,
-    "curly": 0
+    "curly": 0,
+    "arrow-body-style": 0
   },
   "globals": {
     "after": false,
