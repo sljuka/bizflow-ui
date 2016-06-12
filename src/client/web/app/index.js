@@ -1,5 +1,5 @@
-import Counter from '../counter';
 import Processes from '../processes';
+import { StyleRoot } from 'radium';
 import React, { Component } from 'react';
 
 // If you use React Router, make this component
@@ -12,10 +12,9 @@ import React, { Component } from 'react';
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <Counter />
+      <StyleRoot>
         <Processes />
-      </div>
+      </StyleRoot>
     );
   }
 }

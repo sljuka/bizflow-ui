@@ -1,4 +1,4 @@
-import * as counterActions from '../../common/counter/actions';
+import { fetchProcesses } from '../../common/processes/actions';
 import ProcessList from './processList';
 import React, { PropTypes as RPT, Component } from 'react';
 import { bindActionCreators } from 'redux';
@@ -11,23 +11,26 @@ import { connect } from 'react-redux';
     return { processes };
   },
   (dispatch) => {
-    const actions = bindActionCreators(counterActions, dispatch);
+    const processActions = bindActionCreators({ fetchProcesses }, dispatch);
 
-    return { actions };
+    return { processActions };
   }
 )
 export default class Processes extends Component {
 
   static propTypes = {
     processes: RPT.array,
-    actions: RPT.object
+    processActions: RPT.object
   };
 
   render() {
-    const { processes } = this.props;
+    const { processes, processActions } = this.props;
 
     return (
-      <ProcessList processes={processes} />
+      <div>
+        <button onClick={processActions.fetchProcesses}>Fetch processes</button>
+        <ProcessList processes={processes} />
+      </div>
     );
   }
 }

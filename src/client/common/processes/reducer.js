@@ -12,7 +12,7 @@ export default function processes(state = initialState, action) {
 
       return state.set('processes', pcss);
     }
-    default:
-      return state;
   }
+
+  return state;
 }
