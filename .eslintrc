@@ -21,7 +21,8 @@
     "new-cap": 0,
     "curly": 0,
     "arrow-body-style": 0,
-    "default-case": 0
+    "default-case": 0,
+    "react/jsx-no-bind": 0
   },
   "globals": {
     "after": false,

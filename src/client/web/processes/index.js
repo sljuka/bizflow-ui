@@ -24,11 +24,10 @@ export default class Processes extends Component {
   };
 
   render() {
-    const { processes, processActions } = this.props;
+    const { processes } = this.props;
 
     return (
       <div>
-        <button onClick={processActions.fetchProcesses}>Fetch processes</button>
         <ProcessList processes={processes} />
       </div>
     );
