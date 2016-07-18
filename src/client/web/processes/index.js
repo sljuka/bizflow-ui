@@ -1,5 +1,6 @@
 import { fetchProcesses } from '../../common/processes/actions';
 import ProcessList from './processList';
+import AnimatedList from './animatedLIst';
 import React, { PropTypes as RPT, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -19,8 +20,7 @@ import { connect } from 'react-redux';
 export default class Processes extends Component {
 
   static propTypes = {
-    processes: RPT.array,
-    processActions: RPT.object
+    processes: RPT.array
   };
 
   render() {
@@ -28,7 +28,7 @@ export default class Processes extends Component {
 
     return (
       <div>
-        <ProcessList processes={processes} />
+        <AnimatedList />
       </div>
     );
   }
