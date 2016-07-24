@@ -1,12 +1,12 @@
-import Col from 'react-bootstrap/lib/Col';
 import CircleMenu from '../components/circleMenu';
-import Grid from 'react-bootstrap/lib/Grid';
-import ProcessPanel from './processPanel';
+import Col from 'muicss/lib/react/col';
+import Container from 'muicss/lib/react/container';
+import globals from '../components/style';
+import Process from './process';
 import Radium from 'radium';
 import React, { PropTypes as RPT, Component } from 'react';
-import Row from 'react-bootstrap/lib/Row';
+import Row from 'muicss/lib/react/row';
 import Search from '../components/search';
-import globals from '../components/style';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchProcesses } from '../../common/processes/actions';
@@ -45,7 +45,7 @@ export default class ProcessList extends Component {
 
     return (
       <div>
-        <Grid>
+        <Container fluid>
           <CircleMenu style={style.floatLeft} />
           <ProcessesHeader processes={processes} style={style.floatLeft} />
           <button
@@ -56,14 +56,14 @@ export default class ProcessList extends Component {
           </button>
           <Search inheritedStyle={{ base: style.floatRight }} />
           <div style={globals.clearfix}></div>
-          <Row className="show-grid">
+          <Row>
             {processes.map((process) =>
-              <Col key={process.id} xs={12} sm={6} md={6} lg={4}>
-                <ProcessPanel process={process} />
+              <Col key={process.id} md="6">
+                <Process process={process} />
               </Col>
             )}
           </Row>
-        </Grid>
+        </Container>
       </div>
     );
   }
