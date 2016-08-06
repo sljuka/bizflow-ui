@@ -11,11 +11,11 @@ export default function processes(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_PROCESSES_SUCCESS': {
       const pcss = action.payload.processes;
-      const reformatedProcesses = Map(pcss.map((item) => [item.id, item]));
+      const reformatedProcesses = Map(pcss.map((item) => [item.name, item]));
 
       return state
         .set('processes', reformatedProcesses)
-        .set('processesOrder', pcss.map((item) => item.id));
+        .set('processesOrder', pcss.map((item) => item.name));
     }
     case 'ATTEMPT_PROCESS_INSTANCE_CREATION': {
       const processId = action.payload.processId;
@@ -28,10 +28,9 @@ export default function processes(state = initialState, action) {
     }
 
     case 'DISPLAY_INSTANCE': {
-      const {processName, instanceId} = action.payload;
+      const { processName, instanceId } = action.payload;
 
-      const pcss = processes.indexOf(item => item.name === processName);
-
+      return state.setIn(['processes', processName, 'displayed'], instanceId);
     }
   }
 

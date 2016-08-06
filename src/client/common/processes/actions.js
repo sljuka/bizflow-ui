@@ -64,14 +64,22 @@ export const createProcessInstance = (pcssId) => {
   };
 };
 
-export const attemptProcessInstanceCreation = (processId) => {
-  return {
+export const attemptProcessInstanceCreation = (processId) =>
+  ({
     type: 'ATTEMPT_PROCESS_INSTANCE_CREATION',
     payload: {
       processId
     }
-  };
-};
+  });
 
 export const cancelProcessInstanceCreation = () =>
   ({ type: 'CANCEL_PROCESS_INSTANCE_CREATION' });
+
+export const displayInstance = (processName, instanceId) =>
+  ({
+    type: 'DISPLAY_INSTANCE',
+    payload: {
+      processName,
+      instanceId
+    }
+  });
