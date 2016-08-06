@@ -22,10 +22,10 @@ const customStyles = {
 @Radium
 @connect(
   (state) => {
-    const creatingProcessId = state.processes.creatingProcessId;
-    const pcss = state.processes.processes.find(pcs => pcs.id === creatingProcessId);
+    const newInstanceProcessId = state.processes.newInstanceProcessId;
+    const pcss = state.processes.processes.find(pcs => pcs.id === newInstanceProcessId);
 
-    return { creatingProcessId, pcss };
+    return { newInstanceProcessId, pcss };
   },
   (dispatch) => {
     const processActions = bindActionCreators({
@@ -38,11 +38,11 @@ const customStyles = {
 )
 export default class InstanceCreationModal extends Component {
   render() {
-    const { creatingProcessId, processActions, pcss: { name } } = this.props;
+    const { newInstanceProcessId, processActions, pcss: { name } } = this.props;
 
     return (
       <Modal
-        isOpen={!!creatingProcessId}
+        isOpen={!!newInstanceProcessId}
         style={customStyles}
         onRequestClose={processActions.cancelProcessInstanceCreation}
       >
@@ -56,7 +56,7 @@ export default class InstanceCreationModal extends Component {
           Cancel
         </button>
         <button
-          onClick={() => processActions.createProcessInstance(creatingProcessId)}
+          onClick={() => processActions.createProcessInstance(newInstanceProcessId)}
         >
           Submit
         </button>
@@ -66,7 +66,7 @@ export default class InstanceCreationModal extends Component {
 }
 
 InstanceCreationModal.propTypes = {
-  creatingProcessId: RPT.number,
+  newInstanceProcessId: RPT.number,
   processActions: RPT.object,
   pcss: RPT.object
 };

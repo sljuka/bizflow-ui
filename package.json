@@ -55,7 +55,7 @@
     "lodash.range": "^3.1.5",
     "muicss": "^0.6.7",
     "radium": "^0.18.0",
-    "react": "^15.1.0",
+    "react": "^0.14.8",
     "react-bootstrap": "^0.29.4",
     "react-dom": "^15.0.1",
     "react-modal": "^1.4.0",

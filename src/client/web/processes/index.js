@@ -7,10 +7,10 @@ import { cancelProcessInstanceCreation } from '../../common/processes/actions';
 
 @connect(
   (state) => {
-    const processes = state.processes.processes;
-    const creatingProcessId = state.processes.creatingProcessId;
+    const processes = state.processes.processes.valueSeq();
+    const newInstanceProcessId = state.processes.newInstanceProcessId;
 
-    return { processes, creatingProcessId };
+    return { processes, newInstanceProcessId };
   },
   (dispatch) => {
     const processActions = bindActionCreators({
@@ -23,18 +23,18 @@ import { cancelProcessInstanceCreation } from '../../common/processes/actions';
 export default class Processes extends Component {
 
   static propTypes = {
-    creatingProcessId: RPT.number,
-    processes: RPT.array,
+    newInstanceProcessId: RPT.number,
+    processes: RPT.object,
     processActions: RPT.object
   };
 
   render() {
-    const { processes, creatingProcessId } = this.props;
+    const { processes, newInstanceProcessId } = this.props;
 
     return (
       <div>
         <ProcessList processes={processes} />
-        {!!creatingProcessId && <InstanceCreationModal />}
+        {!!newInstanceProcessId && <InstanceCreationModal />}
       </div>
     );
   }

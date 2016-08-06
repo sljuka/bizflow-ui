@@ -36,9 +36,9 @@ const defaultStyle = {
 
 @connect(
   (state) => {
-    const creatingProcessId = state.processes.creatingProcessId;
+    const newInstanceProcessId = state.processes.newInstanceProcessId;
 
-    return { creatingProcessId };
+    return { newInstanceProcessId };
   },
   (dispatch) => {
     const processActions = bindActionCreators({
@@ -76,7 +76,7 @@ export default class ProcessPanel extends Component {
 }
 
 ProcessPanel.propTypes = {
-  creatingProcessId: RPT.number,
+  newInstanceProcessId: RPT.number,
   process: RPT.object,
   processActions: RPT.object
 };

@@ -36,7 +36,7 @@ const style = {
 export default class ProcessList extends Component {
 
   static propTypes = {
-    processes: RPT.array,
+    processes: RPT.object,
     processActions: RPT.object
   };
 
@@ -76,6 +76,6 @@ const ProcessesHeader = (props) => {
 };
 
 ProcessesHeader.propTypes = {
-  processes: RPT.array,
+  processes: RPT.object,
   style: RPT.object
 };
