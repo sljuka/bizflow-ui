@@ -1,5 +1,6 @@
 import dataQuery from '../../lib/dataQuery.js';
 import dataMutation from '../../lib/dataMutation.js';
+import toSnakeCase from '../../lib/toSnakeCase';
 
 const PROCESS_QUERY = `
 {
@@ -79,7 +80,7 @@ export const displayInstance = (processName, instanceId) =>
   ({
     type: 'DISPLAY_INSTANCE',
     payload: {
-      processName,
+      processName: toSnakeCase(processName),
       instanceId
     }
   });

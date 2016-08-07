@@ -1,6 +1,9 @@
-import Radium from 'radium';
-import React, { PropTypes as RPT } from 'react';
 import globals from '../components/style';
+import Radium from 'radium';
+import React, { PropTypes as RPT, Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { displayInstance } from '../../common/processes/actions';
 
 const defaultStyle = {
   base: {
@@ -15,18 +18,34 @@ const defaultStyle = {
   }
 };
 
-const ProcessInstance = function (props) {
-  const { processInstance: { name, id } } = props;
+@connect(
+  null,
+  (dispatch) => {
+    const processActions = bindActionCreators({
+      displayInstance
+    }, dispatch);
 
-  return (
-    <div style={defaultStyle.base}>
-      <div style={defaultStyle.content}>{name} #{id}</div>
-    </div>
-  );
-};
+    return { processActions };
+  }
+)
+@Radium
+export default class ProcessInstance extends Component {
 
-ProcessInstance.propTypes = {
-  processInstance: RPT.object
-};
+  static propTypes = {
+    processInstance: RPT.object,
+    processActions: RPT.object
+  };
 
-export default Radium(ProcessInstance);
+  render() {
+    const { processInstance: { name, id }, processActions } = this.props;
+
+    return (
+      <div style={defaultStyle.base}>
+        <div style={defaultStyle.content}>
+          <span>{name} #{id}</span>
+          <button onClick={() => processActions.displayInstance(name, id)}>display</button>
+        </div>
+      </div>
+    );
+  }
+}

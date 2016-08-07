@@ -1,4 +1,5 @@
 import { Record, Map } from 'immutable';
+import toSnakeCase from '../../lib/toSnakeCase';
 
 const InitialState = Record({
   processesOrder: [],
@@ -11,7 +12,7 @@ export default function processes(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_PROCESSES_SUCCESS': {
       const pcss = action.payload.processes;
-      const reformatedProcesses = Map(pcss.map((item) => [item.name, item]));
+      const reformatedProcesses = Map(pcss.map((item) => [toSnakeCase(item.name), item]));
 
       return state
         .set('processes', reformatedProcesses)
@@ -29,8 +30,11 @@ export default function processes(state = initialState, action) {
 
     case 'DISPLAY_INSTANCE': {
       const { processName, instanceId } = action.payload;
-
-      return state.setIn(['processes', processName, 'displayed'], instanceId);
+      const a = state.updateIn(['processes', processName], pcss => {
+        pcss.displayed = instanceId; // eslint-disable-line no-param-reassign
+        return pcss;
+      });
+      return a;
     }
   }
 
